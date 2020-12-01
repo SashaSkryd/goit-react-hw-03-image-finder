@@ -1,23 +1,27 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import style from "../App/App.module.css"
+import PropTypes from "prop-types"
 
 export default class Searchbar extends Component {
+  static propTypes = {
+    handleSearch: PropTypes.func.isRequired,
+  }
 
   state = {
-    text: '',
+    text: "",
   }
 
   handleChange = ({ target }) => {
-    const { value, name } = target;
-    this.setState({ [name]: value });
-  };
+    const { value, name } = target
+    this.setState({ [name]: value })
+  }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-    const { handleSearch } = this.props;
-    handleSearch(this.state.text);
-    this.setState({ text: "" });
-  };
+    event.preventDefault()
+    const { handleSearch } = this.props
+    handleSearch(this.state.text)
+    this.setState({ text: "" })
+  }
 
   render() {
     return (
@@ -28,7 +32,7 @@ export default class Searchbar extends Component {
           </button>
           <input
             className={style.SearchFormInput}
-            name='text'
+            name="text"
             type="search"
             autoComplete="off"
             autoFocus
